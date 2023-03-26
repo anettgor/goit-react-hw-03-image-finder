@@ -5,7 +5,7 @@ import { Notify } from 'notiflix';
 import Loader from './Loader/Loader';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
-import ImageGalleryItem from './ImageGallery/ImageGalleryItem';
+import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
 
@@ -62,6 +62,7 @@ export class App extends Component {
         isLoaded: false,
         error: true,
       });
+      console.log('error while fetching results');
     }
   }
 
@@ -103,6 +104,7 @@ export class App extends Component {
   };
 
   render() {
+    const { isLoaded, items, PER_PAGE, largeImg, alt, showModal } = this.state;
     return (
       <div
         style={{
@@ -112,29 +114,19 @@ export class App extends Component {
           paddingBbottom: 24,
         }}
       >
-        <Searchbar
-          // handleChange={this.handleChange}
-          // handleSubmit={this.handleSubmit}
-          onSubmit={this.handleSubmit}
-        />
+        <Searchbar onSubmit={this.handleSubmit} />
 
-        {!this.state.isLoaded && <Loader />}
+        {!isLoaded && <Loader />}
         <ImageGallery>
           <ImageGalleryItem
-            hits={this.state.items}
+            hits={items}
             onClick={this.showModal}
           ></ImageGalleryItem>
         </ImageGallery>
 
-        {this.state.items.length > this.state.PER_PAGE - 1 && (
-          <Button onClick={this.loadMore} />
-        )}
-        {this.state.showModal && (
-          <Modal
-            image={this.state.largeImg}
-            alt={this.state.alt}
-            onClick={this.hideModal}
-          />
+        {items.length > PER_PAGE - 1 && <Button onClick={this.loadMore} />}
+        {showModal && (
+          <Modal image={largeImg} alt={alt} onClose={this.hideModal} />
         )}
       </div>
     );

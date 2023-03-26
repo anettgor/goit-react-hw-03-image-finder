@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import css from './ImageGallery.module.css';
+import css from './ImageGalleryItem.module.css';
 
 class ImageGalleryItem extends Component {
   static propTypes = {
