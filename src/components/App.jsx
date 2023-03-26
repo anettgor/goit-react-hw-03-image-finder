@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import axios from 'axios';
+import { Notify } from 'notiflix';
 
 import Loader from './Loader/Loader';
 import Searchbar from './Searchbar/Searchbar';
@@ -52,7 +53,9 @@ export class App extends Component {
           items: [...this.state.items, ...res.data.hits],
         });
       } else {
-        alert('Sorry, there are no matches found');
+        Notify.info(
+          'Sorry, there are no matches found. Try entering another query'
+        );
       }
     } catch {
       this.setState({
@@ -72,7 +75,7 @@ export class App extends Component {
       });
       this.delayedFetch();
     } else {
-      alert('You are already looking at results of this query');
+      Notify.info('You are already looking at results of this query');
     }
   };
 
