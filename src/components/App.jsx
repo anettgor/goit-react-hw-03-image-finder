@@ -11,8 +11,10 @@ import Modal from './Modal/Modal';
 export class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       showModal: false,
+      alt: '',
       largeImg: '',
       error: false,
       isLoaded: false,
@@ -74,10 +76,11 @@ export class App extends Component {
     }
   };
 
-  showModal = url => {
+  showModal = (url, alt) => {
     this.setState({
       showModal: true,
       largeImg: url,
+      alt: alt,
     });
   };
 
@@ -124,7 +127,11 @@ export class App extends Component {
           <Button onClick={this.loadMore} />
         )}
         {this.state.showModal && (
-          <Modal image={this.state.largeImg} onClick={this.hideModal} />
+          <Modal
+            image={this.state.largeImg}
+            alt={this.state.alt}
+            onClick={this.hideModal}
+          />
         )}
       </div>
     );
