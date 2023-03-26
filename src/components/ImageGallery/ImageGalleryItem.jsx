@@ -14,7 +14,7 @@ class ImageGalleryItem extends Component {
       <li
         className={css.imageGalleryItem}
         key={hit.id}
-        onClick={() => onClick(hit.largeImageURL)}
+        onClick={() => onClick(hit.largeImageURL, hit.tags)}
       >
         <img
           alt={hit.tags}
