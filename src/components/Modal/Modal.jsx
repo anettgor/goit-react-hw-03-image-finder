@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 class Modal extends Component {
   static propTypes = {
     image: PropTypes.string,
-    onClick: PropTypes.func,
+    onClose: PropTypes.func,
     alt: PropTypes.string,
-    onKeyDown: PropTypes.func,
   };
 
   componentDidMount() {

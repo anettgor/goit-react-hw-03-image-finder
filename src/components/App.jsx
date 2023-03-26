@@ -105,6 +105,7 @@ export class App extends Component {
 
   render() {
     const { isLoaded, items, PER_PAGE, largeImg, alt, showModal } = this.state;
+
     return (
       <div
         style={{
